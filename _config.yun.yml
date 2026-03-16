@@ -1,0 +1,32 @@
+favicon: /favicon.ico
+banner:
+  enable: true
+  title: 只属于我们的世界
+  border: true
+  cloud:
+    enable: true
+    color: white
+  go_down:
+    enable: true
+    icon: ri:arrow-down-s-line
+notice:
+  enable: true
+  content: 一直都在哦
+bg_image:
+  enable: true
+  url: /images/background.jpg
+  # dark:
+  blur: 10px # 设置背景模糊程度
+  opacity: 0.6
+# _config.yun.yml
+medium_zoom: true
+avatar:
+  enable: true
+  url: /images/avatar.png
+  rounded: true
+  opacity: 1
+  mickey_mouse: false
+  status:
+    enable: true
+    emoji: 
+    message: 我喜欢你
