@@ -1,0 +1,33 @@
+name: Deploy Hexo to GitHub Pages
+
+on:
+  push:
+    branches:
+      - source   # 当 source 分支有推送时触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true  # 如果你保留了主题子模块，需要拉取；如果删除了 .git，此项可忽略
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18   # 使用 Node.js 18（可根据你的 Hexo 要求调整）
+
+      - name: Install dependencies
+        run: npm ci          # 比 npm install 更快，且严格基于 package-lock.json
+
+      - name: Generate static files
+        run: npm run build   # 执行构建（需要先在 package.json 中定义 build 脚本）
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages  # 推送到 gh-pages 分支
